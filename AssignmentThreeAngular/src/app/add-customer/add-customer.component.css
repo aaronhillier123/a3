@@ -1,0 +1,60 @@
+.spacer {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+  border: 3px solid green;
+}
+input::placeholder {
+  color:orange;
+  text-align: center;
+  font-style: italic;
+  font-size: 16px;
+}
+.superError{
+  left: 150px;
+  top: 175px;
+  position: fixed;
+  size: 350px;
+  font-size: 250px;
+  color: red;
+  transform: rotate(30deg);
+  animation-name: flash;
+  animation-duration: .5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+input {
+  border-color: red;
+  background-color: cyan;
+  color: red;
+}
+h2{
+  width: 300px;
+  max-width: 300px;
+  display: inline;
+}
+.flash-button {
+  background: lightgreen;
+  padding: 5px 10px;
+  color: saddlebrown;
+  border: none;
+  border-radius: 5px;
+  animation-name: flash;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.flow{
+  padding-bottom: 10px;
+}
+.errorWarning{
+  color: red;
+}
+.successWarning{
+  color: green;
+}
+@keyframes flash {
+  0% { opacity: 1.0; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1.0; }
+}

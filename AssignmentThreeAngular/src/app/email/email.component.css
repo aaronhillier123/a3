@@ -1,0 +1,29 @@
+.mainDiv {
+  text-align: center;
+  background-color: bisque;
+}
+.wide{
+  width: 400px;
+  background-color: purple;
+}
+input::placeholder {
+  color:orange;
+}
+.bigButton{
+  height: 50px;
+  width: 100px;
+  background-color: blue;
+  font-size: 30px;
+  animation-name: myNewanimation;
+  animation-duration: 40s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+@keyframes myNewanimation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(3600deg);
+  }
+}

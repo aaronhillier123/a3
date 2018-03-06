@@ -1,0 +1,29 @@
+
+<div class="allStuff">
+  <ul class="noBull">
+    <div><span>TEXAS</span></div>
+    <li class="spacer" *ngFor="let customer of texasCustomers">
+      <span class="spanbox">{{customer.firstName}}</span>
+      <span class="spanbox">{{customer.lastName}}</span>
+      <span class="spanbox">{{customer.emailAddress}}</span>
+      <span class="spanbox">{{customer.homeAddress}}</span>
+      <span class="spanbox">{{customer.city}}</span>
+      <span class="spanbox">{{customer.state}}</span>
+      <span class="spanbox">{{customer.zipCode}}</span>
+    </li>
+  </ul>
+  <hr>
+  <ul class="noBull">
+    <span><h2>OTHER CUSTOMERS</h2></span>
+    <li class="spacer" *ngFor="let customer of otherCustomers">
+      <span class="spanbox">{{customer.firstName}}</span>
+      <span class="spanbox">{{customer.lastName}}</span>
+      <span class="spanbox">{{customer.emailAddress}}</span>
+      <span class="spanbox">{{customer.homeAddress}}</span>
+      <span class="spanbox">{{customer.city}}</span>
+      <span class="spanbox">{{customer.state}}</span>
+      <span class="spanbox">{{customer.zipCode}}</span>
+    </li>
+  </ul>
+    <hr>
+</div>

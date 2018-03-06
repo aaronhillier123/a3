@@ -1,0 +1,51 @@
+.head{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  height: 20%;
+  text-align: center;
+  align-content: center;
+}
+.snake{
+  animation-name: myanimation;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+.balloon{
+  position: fixed;
+  max-width: 100px;
+  animation-name: mybanimation;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+.balloon2{
+  position: fixed;
+  right: 100px;
+  max-width: 100px;
+  animation-name: mybanimation;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+@keyframes myanimation {
+    from {
+      transform: translate(-500px);
+    }
+    to {
+      transform: translate(2000px);
+    }
+}
+@keyframes mybanimation {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-2000px);
+  }
+}
+
+
+

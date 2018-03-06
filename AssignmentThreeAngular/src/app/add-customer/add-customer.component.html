@@ -1,0 +1,20 @@
+<div>
+  <div class="flow">
+    <span class="flow">
+      <h2>ADD NEW CUSTOMER</h2>
+      <button class="flash-button"(click)="addCustomer()">ADD NEW CUSTOMER</button>
+      <button class="flash-button"(click)="clearError()">CANCEL</button>
+    </span>
+  </div>
+  <div *ngIf="success!=0" class="superError">ERROR!</div>
+  <span class="spacer">
+    <input [(ngModel)] = newCustomer.firstName placeholder="First Name">
+    <input [(ngModel)] = newCustomer.lastName placeholder="Last Name">
+    <input [(ngModel)] = newCustomer.emailAddress placeholder="Email Address">
+    <input [(ngModel)] = newCustomer.homeAddress placeholder="Home Address">
+    <input [(ngModel)] = newCustomer.city placeholder="City">
+    <input [(ngModel)] = newCustomer.state placeholder="State">
+    <input [(ngModel)] = newCustomer.zipCode placeholder="Zip Code">
+  </span>
+  <p [ngClass]="{'0':'successWarning','1':'errorWarning'}[success]" *ngIf="errorMessage">{{this.errorMessage}}</p>
+</div>

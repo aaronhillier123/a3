@@ -1,0 +1,42 @@
+/* HeroesComponent's private CSS styles */
+.allStuff{
+  margin: auto;
+  background-color: pink;
+}
+.noBull {
+  list-style-type: none;
+  text-align: center;
+  margin: auto;
+  background-color: lightgray;
+  border: 3px solid purple;
+}
+hr {
+  border-color: red;
+  background-color: blue;
+}
+h2 {
+  font-family: Lucida Console, Monospaced ;
+  font-style: italic;
+  text-overline-color: blue;
+}
+.badge {
+  border: 4px solid red;
+}
+.spacer {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  border: 3px solid green;
+}
+.mainDiv {
+  text-align: center;
+}
+.spanbox {
+  display: inline-block;
+  float: left;
+  width: 400px;
+  background-color: lightblue;
+  border: 5px solid orange;
+  max-width: 400px;
+}
+

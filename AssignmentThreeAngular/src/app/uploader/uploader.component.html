@@ -1,0 +1,8 @@
+<div class="upload">
+  <hr>
+  <h3>Choose a csv file to upload customers in bulk</h3>
+  <input (change)="onChange($event)" type="file">
+  <button (click)="uploadFile()">UPLOAD</button>
+  <p class='errorWarning' *ngIf="errorMessage">{{errorMessage}}</p>
+  <hr>
+</div>
