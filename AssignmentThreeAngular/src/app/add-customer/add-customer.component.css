@@ -1,60 +1,74 @@
-.spacer {
-  display: flex;
-  justify-content: space-evenly;
-  text-align: center;
-  border: 3px solid green;
-}
+
 input::placeholder {
-  color:orange;
+  color:black;
   text-align: center;
   font-style: italic;
   font-size: 16px;
 }
-.superError{
-  left: 150px;
-  top: 175px;
-  position: fixed;
-  size: 350px;
-  font-size: 250px;
-  color: red;
-  transform: rotate(30deg);
-  animation-name: flash;
-  animation-duration: .5s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
+.panel{
+  text-align: center;
+  border-radius: 8px;
+  justify-content: center;
+  padding: 2%;
+  border: 5px solid white;
 }
-input {
-  border-color: red;
-  background-color: cyan;
-  color: red;
+.marg{
+  margin: 1%;
 }
-h2{
-  width: 300px;
-  max-width: 300px;
-  display: inline;
+.fire{
+  height: 100%;
+  width: 100%;
+  background-size: 100%;
+  background-image: url("../../assets/images/fire.jfif");
+  opacity: 0.5;
 }
-.flash-button {
-  background: lightgreen;
-  padding: 5px 10px;
-  color: saddlebrown;
-  border: none;
-  border-radius: 5px;
-  animation-name: flash;
-  animation-duration: 1s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
+.seperate{
+  margin-right: 2%;
+  margin-left: 2%;
+  margin-top: 1%;
+  font-size: 18px;
+  font-weight: bolder;
 }
-.flow{
-  padding-bottom: 10px;
+.nonValid{
+  background-image: url("../../assets/images/redGrad.jfif");
+  background-size: 100%;
 }
-.errorWarning{
-  color: red;
+.exists{
+  background-image: url("../../assets/images/yellowGrad.jpg");
+  background-size: 100%;
 }
-.successWarning{
-  color: green;
+.valid{
+  background-image: url("../../assets/images/greenGrad.jfif");
+  background-size: 100%;
 }
-@keyframes flash {
-  0% { opacity: 1.0; }
-  50% { opacity: 0.5; }
-  100% { opacity: 1.0; }
+.customerButton{
+  text-align: center;
+  margin-top: 5px;
+  display: inline-flex;
+  border-radius: 8px;
+  border: 4px solid white;
+  background-color: lightgreen;
+  color: black;
 }
+.customerButton:hover{
+  border: 4px solid orange;
+  cursor: pointer;
+}
+.hidden{
+  visibility: hidden;
+}
+.customerInput{
+  display: inline-flex;
+  border: 4px solid black;
+  background-color: white;
+  color: black;
+  text-align: center;
+}
+.customerInput:hover{
+  background-color: lightcoral;
+}
+.customerInput:focus{
+  background-color: lightcoral;
+}
+
+

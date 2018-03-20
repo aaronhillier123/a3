@@ -8,20 +8,25 @@ export class EmailService {
 
   baseUrl: String = 'http://localhost:8060/api/';
   currentMessage = '';
+  preMessageString = '';
   constructor(private http: HttpClient) { }
 
-  sendEmail(message: string, toAddress: string, fromAddress: string): Observable<String> {
-    console.log(toAddress);
-    console.log(fromAddress);
+  sendEmail(toAddress: string, fromAddress: string, subject: string, smtpAddress: string): Observable<String> {
+    const message = this.preMessageString + '\n' + this.currentMessage;
     const emailParams = new HttpParams()
       .set('message', message)
       .set('sendAddress', fromAddress)
-      .set('recieveAddress', toAddress
+      .set('recieveAddress', toAddress)
+      .set('subject', subject)
+      .set('smtpAddress', smtpAddress
   );
     return this.http.post<String>(this.baseUrl + 'email/send', {}, {params: emailParams});
   }
-  addToMessage(message: string): void {
-    this.currentMessage += message;
+  setMessage(message: string): void {
+    this.currentMessage = message;
+  }
+  preMessage(message: string): void {
+    this.preMessageString = message;
   }
   getMessage(): string {
     return this.currentMessage;

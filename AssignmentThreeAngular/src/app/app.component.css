@@ -1,51 +1,65 @@
-.head{
+.logo{
   display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-  height: 20%;
+  margin: 10px;
+  width: 100%;
+  height: 10%;
+}
+.innerImage{
+  margin: 5px;
+}
+.background{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-size: 100%;
+  background-image: url("../assets/images/HEB.jpg");
+  opacity: .8;
+}
+.blueOverlay{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-size: 100%;
+  background-image: url("../assets/images/rainbow.jpg");
+  opacity: .6;}
+.everything {
+  border: 5px solid black;
+  display: block;
+  justify-content: center;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  padding: 1%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.slogan{
+  font-size: 1vw;
+  color: white;
+  font-weight: bolder;
+  padding-top: 5%;
+}
+.fullPage{
+  width: 100%;
+  display:block;
+}
+.signIn{
+  background-color: white;
+  margin-top: 5px;
+}
+.welcome{
+  margin-top: 5px;
+  font-size: 18px;
+  font-weight: bold;
   text-align: center;
-  align-content: center;
 }
-.snake{
-  animation-name: myanimation;
-  animation-duration: 8s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
+.giant{
+  font-size: 72px;
+  font-weight: bolder;
+  text-align: center;
+  color: black;
 }
-.balloon{
-  position: fixed;
-  max-width: 100px;
-  animation-name: mybanimation;
-  animation-duration: 5s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-}
-.balloon2{
-  position: fixed;
-  right: 100px;
-  max-width: 100px;
-  animation-name: mybanimation;
-  animation-duration: 6s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-}
-@keyframes myanimation {
-    from {
-      transform: translate(-500px);
-    }
-    to {
-      transform: translate(2000px);
-    }
-}
-@keyframes mybanimation {
-  from {
-    transform: translateY(0px);
-  }
-  to {
-    transform: translateY(-2000px);
-  }
-}
+
 
 
 

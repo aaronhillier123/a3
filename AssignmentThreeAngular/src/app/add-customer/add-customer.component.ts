@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Customer} from '../customer';
 import {CustomerService} from '../customer.service';
+import {Subject} from 'rxjs/Subject';
+import {Subscription} from 'rxjs/Subscription';
+import {FormBuilder, FormControl, PatternValidator} from '@angular/forms';
+import {AuthService} from '../auth.service';
 
 @Component({
   selector: 'app-add-customer',
@@ -8,37 +12,67 @@ import {CustomerService} from '../customer.service';
   styleUrls: ['./add-customer.component.css']
 })
 export class AddCustomerComponent implements OnInit {
-
-  constructor(private customerService: CustomerService) { }
-  newCustomer: Customer = new Customer();
-  errorMessage = '';
-  success = 0;
-  addCustomer(): void {
-    if (this.newCustomer.emailAddress.includes('@')) {
-      this.customerService.addCustomer(this.newCustomer)
-        .subscribe(result => {
-          console.log(result);
-          if (result === 0) {
-            this.success = 0;
-            this.errorMessage = 'SUCCESSFUL ADD';
-          } else if (result === 1062) {
-            this.success = 1;
-            this.errorMessage = 'ADD FAILED: DUPLICATE ENTRY ON EMAIL ADDRESS, PLEASE ENTER A DIFFERENT EMAIL ADDRESS';
-          } else if (result === 1406) {
-            this.success = 1;
-            this.errorMessage = 'FAILED: INVALID STATE, PLEASE ENTER A STATE WITH THE 2 CHARACTER STATE CODE (TX, CA, NY, etc.)';
+  editingCustomer = false;
+  validArray = new Array<number>();
+  valid = 0;
+  currentCustomer: Customer = new Customer();
+  currentSubscription: Subscription;
+  validSubscription: Subscription;
+  constructor(private customerService: CustomerService, private auth: AuthService) {
+    this.currentSubscription = customerService.CurrentSubject.subscribe((value) => {
+      this.currentCustomer = value;
+    });
+    this.validSubscription = customerService.isValidSubject.subscribe((value) => {
+      this.validArray = value;
+      this.valid = 2;
+      for (const c of this.validArray) {
+        if ( c !== 2 && this.valid !== 0 ) {
+          this.valid = 1;
+          if ( c === 0) {
+            this.valid = 0;
           }
-        });
-    } else {
-      this.success = 1;
-      this.errorMessage = 'Email invalid. Please enter a valid email address!';
-    }
-    this.newCustomer.clear();
+        }
+      }
+    });
   }
-  clearError(): void {
-    this.errorMessage = '';
-    this.success = 0;
+  checkState(): boolean {
+    return false;
+  }
+  addCustomer(): void {
+    this.customerService.addNewCustomer(this.currentCustomer)
+      .subscribe(value => {
+        this.customerService.refresh();
+      });
+  }
+  saveCustomer(): void {
+    this.editingCustomer = false;
+    this.customerService.saveCustomer(this.currentCustomer)
+      .subscribe(value => {
+        this.customerService.refresh();
+      });
+  }
+  removeCustomer(): void {
+    const self = this;
+    this.customerService.removeCustomer(this.currentCustomer)
+      .subscribe(value => {
+        self.customerService.refresh();
+      });
+  }
+  editCustomer(): void {
+    this.editingCustomer = true;
+  }
+  cancel(): void {
+    this.editingCustomer = false;
+  }
+  setCriteria(myCustomer: Customer) {
+    this.customerService.setCurrent(myCustomer);
+  }
+  addToMyList() {
+    this.auth.setValue(this.currentCustomer.id);
   }
   ngOnInit() {
+    this.currentCustomer = this.customerService.Current;
+    this.validArray = this.customerService.isValid;
   }
+
 }

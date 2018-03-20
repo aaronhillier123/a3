@@ -1,9 +1,45 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<img class="head" src="../assets/images/allCustomersBlue.gif">
-<app-customers></app-customers>
-<app-add-customer></app-add-customer>
-<app-email></app-email>
-<app-uploader></app-uploader>
-<img class="snake" src="../assets/images/snake.gif">
-<img class="balloon" src="../assets/images/balloon.gif">
-<img class="balloon2" src="../assets/images/redBalloon.gif">
+<div class="everything">
+  <div class="row background">
+    <div class="blueOverlay"></div>
+  </div>
+  <div class="row">
+   <div class ="row">
+     <div class="col-lg-6">
+        <img class="col-lg-2 innerImage" src="../assets/images/HEBLogo.png">
+        <span class="col-lg-10 slogan">Here . Everything's . Better.</span>
+     </div>
+     <div class="col-lg-6">
+       <div class="row" *ngIf="userDetails==null">
+         <div class="col-lg-5 offset-4"></div>
+        <button class="col-lg-2 signIn"  (click)="signIn()">SIGN IN</button>
+       </div>
+         <div *ngIf="userDetails!=null">
+           <div class="row">
+             <div class="col-lg-3 offset-lg-6 welcome">Welcome {{userDetails.displayName}}!</div>
+              <button class="col-lg-2 signIn" (click)="signOut()">SIGN OUT</button>
+           </div>
+         </div>
+     </div>
+    </div>
+  </div>
+  <div *ngIf="userDetails==null" class="col-12 giant">PLEASE SIGN IN TO CONTINUE</div>
+  <div *ngIf="userDetails!=null">
+    <div class="row">
+        <div class="col-12">
+          <app-customers></app-customers>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-4 col-lg-6 col-md-8 col-sm-12">
+          <div class="col-12">
+            <app-email></app-email>
+          <app-add-customer></app-add-customer>
+        </div>
+        </div>
+          <div class="col-8">
+            <app-my-list></app-my-list>
+          </div>
+      </div>
+    </div>
+  </div>

@@ -7,25 +7,36 @@ import { CustomersComponent } from './customers/customers.component';
 import {HttpClientModule} from '@angular/common/http';
 import {EmailService} from './email.service';
 import { EmailComponent } from './email/email.component';
-import { UploaderComponent } from './uploader/uploader.component';
 import { AddCustomerComponent } from './add-customer/add-customer.component';
+import {environment} from '../environments/environment';
+import {AngularFireModule} from 'angularfire2';
+import {AngularFireDatabaseModule} from 'angularfire2/database';
+import {AngularFireAuthModule} from 'angularfire2/auth';
+import {AuthService} from './auth.service';
+import { MyListComponent } from './my-list/my-list.component';
+import { GridPieceComponent } from './grid-piece/grid-piece.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CustomersComponent,
     EmailComponent,
-    UploaderComponent,
-    AddCustomerComponent
+    AddCustomerComponent,
+    MyListComponent,
+    GridPieceComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    AngularFireModule.initializeApp(environment.firebase, 'angular-auth-firebase'),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
   ],
   providers: [
     CustomerService,
-    EmailService
+    EmailService,
+    AuthService,
   ],
   bootstrap: [AppComponent]
 })

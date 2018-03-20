@@ -1,20 +1,69 @@
-<div>
-  <div class="flow">
-    <span class="flow">
-      <h2>ADD NEW CUSTOMER</h2>
-      <button class="flash-button"(click)="addCustomer()">ADD NEW CUSTOMER</button>
-      <button class="flash-button"(click)="clearError()">CANCEL</button>
-    </span>
-  </div>
-  <div *ngIf="success!=0" class="superError">ERROR!</div>
-  <span class="spacer">
-    <input [(ngModel)] = newCustomer.firstName placeholder="First Name">
-    <input [(ngModel)] = newCustomer.lastName placeholder="Last Name">
-    <input [(ngModel)] = newCustomer.emailAddress placeholder="Email Address">
-    <input [(ngModel)] = newCustomer.homeAddress placeholder="Home Address">
-    <input [(ngModel)] = newCustomer.city placeholder="City">
-    <input [(ngModel)] = newCustomer.state placeholder="State">
-    <input [(ngModel)] = newCustomer.zipCode placeholder="Zip Code">
-  </span>
-  <p [ngClass]="{'0':'successWarning','1':'errorWarning'}[success]" *ngIf="errorMessage">{{this.errorMessage}}</p>
+<div class="row marg">
+  <form  class="col-lg-12 " #theForm="ngForm">
+    <div class="col-xl-12 col-lg-12 col-md-12 panel"[ngClass]="{'nonValid': valid==0 || theForm.invalid, 'exists': editingCustomer || valid==1 && theForm.valid,'valid': valid==2 && theForm.valid && !editingCustomer}">
+      <div class="row">
+        <div *ngIf="(!editingCustomer)" class="seperate col-lg-12">CUSTOMER</div>
+        <div *ngIf="(editingCustomer)" class="seperate col-lg-12">EDIT CUSTOMER</div>
+      </div>
+      <div [ngClass]="{'1': 'hidden','0':'hidden'}[valid]"  class="row seperate">
+        <div class="col-lg-5">ID:</div>
+        <div class="col-lg-5">{{currentCustomer.id}}</div>
+      </div>
+      <div class="row">
+        <div class="seperate col-xl-4 col-lg-8 offset-1">FIRST NAME: </div>
+        <input name="name1" placeholder="First Name" class="seperate col-xl-5 offset-1 customerInput" [(ngModel)] = currentCustomer.firstName (input)="setCriteria(currentCustomer)">
+        <div class="offset-1"></div>
+      </div>
+      <div class="row">
+        <div class="seperate col-xl-4 col-lg-8 offset-1">LAST NAME: </div>
+        <input name="name" placeholder="Last Name" class="seperate col-xl-5 customerInput" [(ngModel)] = currentCustomer.lastName (input)="setCriteria(currentCustomer)">
+        <div class="col-lg-2"></div>
+      </div>
+      <div class="row">
+        <div class="seperate col-xl-4 col-lg-8 offset-1">EMAIL ADDRESS:</div>
+          <input name="name2" placeholder="Email Address" name="email" class="seperate col-xl-5 customerInput" [(ngModel)]="currentCustomer.emailAddress" pattern="^\S+@\S+\.\S+$"  #email="ngModel" (input)="setCriteria(currentCustomer)">
+        <div *ngIf="(email.invalid)"class="col-lg-2">INVALID</div>
+      </div>
+      <div class="row">
+        <div class="seperate col-xl-4 col-lg-8 offset-1">HOME ADDRESS:</div>
+        <input name="name3" placeholder="Home Address" class="seperate col-xl-5 customerInput" [(ngModel)] = currentCustomer.homeAddress (input)="setCriteria(currentCustomer)">
+        <div class="col-lg-2"></div>
+      </div>
+      <div class="row">
+        <div class="seperate col-xl-4 col-lg-8 offset-1">CITY:</div>
+        <input name="name4" placeholder="City" class="seperate col-xl-5 customerInput" [(ngModel)] = currentCustomer.city (input)="setCriteria(currentCustomer)">
+        <div class="col-lg-2"></div>
+      </div>
+      <div class="row">
+        <div class="seperate col-xl-4 col-lg-8 offset-1">STATE:</div>
+        <input name="name5" placeholder="State" class="seperate col-xl-5 customerInput" [(ngModel)] = currentCustomer.state #state="ngModel" (input)="setCriteria(currentCustomer)">
+        <div *ngIf="validArray[4]==0" class="col-lg-2">INVALID</div>
+      </div>
+      <div class="row">
+        <div class="seperate col-xl-4 col-lg-8 offset-1">ZIP CODE:</div>
+        <input name="name6" placeholder="Zip Code" class="seperate col-xl-5 customerInput" [(ngModel)] = currentCustomer.zipCode pattern="^\d{5}(?:[-\s]\d{4})?$" #zipcode="ngModel" (input)="setCriteria(currentCustomer)">
+        <div *ngIf="(zipcode.invalid)" class="col-lg-2">INVALID</div>
+      </div>
+      <div class="row">
+        <button *ngIf="(valid==2 && !editingCustomer)"class="seperate col-lg-10 offset-lg-1 customerButton" (click)="editCustomer()" >EDIT CUSTOMER</button>
+      </div>
+      <div class="row">
+        <button *ngIf="(valid==2 && !editingCustomer)"class="seperate col-lg-10 offset-lg-1 customerButton" (click)="addToMyList()" >ADD/REMOVE CUSTOMER TO YOUR LIST</button>
+      </div>
+      <div class="row">
+        <button [hidden]="theForm.invalid || valid==0" *ngIf="(valid==1 && !editingCustomer)" class="seperate col-lg-10 offset-lg-1 customerButton" (click)="addCustomer()" >ADD CUSTOMER</button>
+      </div>
+      <div class="row">
+        <button *ngIf="(valid==2 && !editingCustomer)" class="seperate col-lg-10 offset-lg-1 customerButton" (click)="removeCustomer()" >DELETE CUSTOMER</button>
+      </div>
+      <div class="row">
+        <button *ngIf="(editingCustomer)" class="seperate col-lg-10 offset-lg-1 customerButton" (click)="saveCustomer()" >SAVE CUSTOMER</button>
+      </div>
+      <div class="row">
+        <button *ngIf="(editingCustomer)" class="seperate col-lg-10 offset-lg-1 customerButton" (click)="cancel()" >CANCEL</button>
+      </div>
+    </div>
+  </form>
 </div>
+
+

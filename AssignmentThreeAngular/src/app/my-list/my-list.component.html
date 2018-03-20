@@ -1,0 +1,57 @@
+
+<div class="col-12 customerList">
+  <div class="centerText" (click)="showSnake()">{{auth.userDetails.displayName}}'s Customer List</div>
+  <div *ngIf="!playingSnake" class="row">
+    <ul class="col-12">
+      <li class="row customerBox" *ngFor="let customer of allCustomers">
+        <div class="d-md-none col-lg">
+          <div class="col-8 offset-2 customerLabel">CUSTOMER ID: {{customer.id}}</div>
+        </div>
+        <div class="col-xl-6 col-lg-12">
+          <div class="row">
+            <div class="col-lg-3 col-md-6">
+              <div class="col-8 offset-2 fieldBox">{{customer.id}}</div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <div class="col-8 offset-2 fieldBox">{{customer.firstName}}</div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <div class="col-8 offset-2 fieldBox">{{customer.lastName}}</div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <div class="col-8 offset-2 fieldBox">{{customer.emailAddress}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-12">
+          <div class="row">
+            <div class="col-lg-3 col-md-6">
+              <div class="col-8 offset-2 fieldBox">{{customer.homeAddress}}</div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <div class="col-8 offset-2 fieldBox">{{customer.city}}</div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <div class="col-8 offset-2 fieldBox">{{customer.state}}</div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <div class="col-8 offset-2 fieldBox">{{customer.zipCode}}</div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="playingSnake">
+    <div *ngFor="let n of gridWidth">
+      <div *ngFor="let nn of gridHeight" class="gridPiece">
+        <app-grid-piece [attr.xValue]="n" [attr.yValue]="nn"></app-grid-piece>
+      </div>
+    </div>
+  </div>
+  <p class="centerText" *ngIf="(allCustomers.length===0)">NO MATCHING CUSTOMERS</p>
+</div>
+<img *ngIf="snakeShow" class="snake" src="../assets/images/snake.gif" (click)="playSnake()">
+
+
+

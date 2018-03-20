@@ -1,4 +1,5 @@
 export class Customer {
+  id: number;
   firstName: string;
   lastName: string;
   emailAddress: string;
@@ -6,15 +7,6 @@ export class Customer {
   city: string;
   state: string;
   zipCode: string;
-  constructor() {
-    this.firstName = '';
-    this.lastName = '';
-    this.emailAddress = '';
-    this.homeAddress = '';
-    this.city = '';
-    this.state = '';
-    this.zipCode = '';
-  }
   public clear(): void {
     this.firstName = '';
     this.lastName = '';

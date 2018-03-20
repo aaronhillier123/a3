@@ -1,0 +1,67 @@
+.customerList{
+  background-image: url("../../assets/images/purpleGrad.jpg");
+  background-size: 100%;
+  border: 3px solid white;
+  margin-right: 2%;
+  align-content: center;
+}
+.centerText{
+  text-align: center;
+  font-size: 32px;
+  font-weight: bold;
+  color: darkorange;
+}
+.centerText:hover{
+  cursor: pointer;
+}
+.fieldBox{
+  background-color: yellow;
+  color: black;
+  margin: auto;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  text-align: center;
+  white-space: nowrap;
+  word-break: break-all;
+  overflow-wrap: break-word;
+}
+.fieldBox::-webkit-scrollbar{
+  display:none;
+}
+.customerBox{
+  display: flex;
+  align-content: center;
+  text-align: center;
+}
+.snake{
+  animation-name: myanimation;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+.gridPiece{
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  margin: 1px;
+  min-width: 50px;
+  min-height: 50px;
+  max-height: 50px;
+  max-width: 50px;
+  background-color: white;
+  color: white;
+  background-size: 100%;
+  border: 1px solid black;
+}
+@keyframes myanimation {
+  from {
+    transform: translate(0px);
+  }
+  to {
+    transform: translate(2000px);
+  }
+}
+
+

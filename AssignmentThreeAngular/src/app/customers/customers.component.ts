@@ -5,6 +5,7 @@ import {EmailService} from '../email.service';
 import {Message} from '../message';
 import {forEach} from '@angular/router/src/utils/collection';
 import {Title} from '@angular/platform-browser';
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-customers',
@@ -13,39 +14,52 @@ import {Title} from '@angular/platform-browser';
 })
 export class CustomersComponent implements OnInit {
 
-  texasCustomers: Customer[] = new Array<Customer>();
-  otherCustomers: Customer[] = new Array<Customer>();
+  allCustomers: Customer[] = new Array<Customer>();
   myCustomer: Customer = new Customer();
-  success: String = '';
-  constructor(private customerService: CustomerService, private emailService: EmailService, private newTitle: Title) { }
-
-  getTexasCustomers(): void {
-    this.customerService.getSimilarCustomers(this.myCustomer)
+  numberOfPages = 0;
+  currentPage = 0;
+  pageArray = new Array<Number>();
+  page = 0;
+  order = 0;
+  sortField = 'firstName';
+  refreshSubscription: Subscription;
+  constructor(private customerService: CustomerService, private emailService: EmailService, private newTitle: Title) {
+    this.refreshSubscription = customerService.refreshSubject.subscribe((value) => {
+      this.myCustomer = value;
+      this.getAllCustomers();
+    });
+  }
+  setSort(sortString: string) {
+    if (this.sortField === sortString) {
+      this.order = (this.order === 0) ? 1 : 0;
+    }
+    this.page = 0;
+    this.sortField = sortString;
+    this.getAllCustomers();
+  }
+  getAllCustomers(): void {
+    this.customerService.getAllCustomers(this.myCustomer, this.order, this.sortField, this.page)
       .subscribe(customers => {
-        this.texasCustomers = customers;
-        let myString = 'TEXAS CUSTOMERS\n';
-        for (let i = 0; i < this.texasCustomers.length; ++i) {
-          myString += this.stringThis(this.texasCustomers[i]);
-          this.emailService.addToMessage(myString);
-          myString = '';
-          }
+        this.allCustomers = customers.content;
+        this.pageArray = new Array<Number>(customers.totalPages)
+        if (this.page >= this.pageArray.length) {
+          this.page = 0;
+        }
+        this.customerService.setAllCustomer(this.allCustomers);
+        this.customerService.setCurrent(this.myCustomer);
+        this.setMessage();
         }
       );
   }
-  getOtherCustomers(): void {
-    this.customerService.getDifferentCustomers(this.myCustomer)
-      .subscribe(customers => {
-        this.otherCustomers = customers;
-        let myString = 'OTHER CUSTOMERS\n';
-        for (let i = 0; i < this.otherCustomers.length; ++i) {
-          myString += this.stringThis(this.otherCustomers[i]);
-          this.emailService.addToMessage(myString);
-          myString = '';
-          }
-        }
-      );
-    }
-    stringThis(c: Customer): string {
+  setCustomer(myCustomer: Customer): void {
+    const newCustomer = JSON.parse(JSON.stringify(myCustomer));
+    this.customerService.setCurrent(newCustomer);
+  }
+  setPage(newPage: number): void {
+    this.page = newPage;
+    this.getAllCustomers();
+  }
+  stringThis(c: Customer): string {
       let myString = '';
       myString += 'First Name: ' + c.firstName + '\n';
       myString += 'Last Name: ' + c.lastName + '\n';
@@ -56,10 +70,19 @@ export class CustomersComponent implements OnInit {
       myString += 'Zip Code: ' + c.zipCode + '\'\n\n';
       return myString;
     }
+    setMessage(): void {
+    let messageString = '';
+    for (let c = 0; c < this.allCustomers.length; ++c) {
+      messageString += this.stringThis(this.allCustomers[c]);
+    }
+    this.emailService.setMessage(messageString);
+    }
+    clear(): void {
+    this.myCustomer = new Customer();
+    this.getAllCustomers();
+    }
   ngOnInit() {
     this.newTitle.setTitle('CUSTOMERS N STUFF');
-    this.myCustomer.setState('\'TX\'');
-    this.getTexasCustomers();
-    this.getOtherCustomers();
+    this.getAllCustomers();
   }
 }

@@ -12,17 +12,22 @@ export class EmailComponent implements OnInit {
   status: String;
   fromAddress: string;
   toAddress: string;
+  smptAddress = 'exchange.heb.com';
+  subject: string;
   message: string;
   constructor( private emailService: EmailService) { }
   sendEmail(): void {
     this.setMessage();
-    this.emailService.sendEmail(this.message, this.fromAddress, this.toAddress)
-      .subscribe(result => this.status = result.toString());
+    this.emailService.sendEmail(this.fromAddress, this.toAddress, this.subject, this.smptAddress)
+      .subscribe(result => {
+      });
     this.fromAddress = '';
     this.toAddress = '';
+    this.message = '';
+    this.subject = '';
   }
   setMessage(): void {
-    this.message = this.emailService.getMessage();
+    this.emailService.preMessage(this.message);
   }
   ngOnInit() {
   }

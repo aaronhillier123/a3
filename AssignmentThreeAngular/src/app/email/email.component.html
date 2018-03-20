@@ -1,16 +1,23 @@
-<div>
-  <div class="mainDiv">
-    <div>
-      <span>From:
-        <input class="wide" [(ngModel)] = fromAddress placeholder="Email Address">
-      </span>
-      <span>To:
-        <input class="wide" [(ngModel)] = toAddress placeholder="Email Address">
-      </span>
-      <span>
-        <button class="bigButton"(click)="sendEmail()">Send</button>
-      </span>
+
+<div class="row email">
+    <div class="col-xl-12 col-lg-12 col-md-12 emailPanel">
+      <div class="row">
+          <div class="col-lg-4 label">
+            EMAIL
+          </div>
       </div>
-    <h3>Send a list of these customers to an email address!</h3>
-  </div>
+      <div class="row">
+        <input class="col-lg-4 offset-lg-2 col-md-5 eput" [(ngModel)] = fromAddress placeholder="Send Address">
+        <input class="col-lg-4 offset-lg-2 col-md-6 eput" [(ngModel)] = toAddress placeholder="Recieve Address">
+      </div>
+      <div class="row">
+        <input class="col-lg-4 offset-lg-3 col-md-5 eput" [(ngModel)] = smptAddress placeholder="SMTP Address">
+        <input class="col-lg-4 offset-lg-1 col-md-6 eput" [(ngModel)] = subject placeholder="Subject">
+      </div>
+      <div class="row">
+        <input class="col-lg-6 offset-lg-3 eput" [(ngModel)] = message placeholder="Personal Message">
+        <button class="col-lg-2 offset-lg-1 bigButton"(click)="sendEmail()">Send</button>
+      </div>
+    </div>
 </div>
+

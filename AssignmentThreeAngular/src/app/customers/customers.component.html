@@ -1,29 +1,126 @@
 
-<div class="allStuff">
-  <ul class="noBull">
-    <div><span>TEXAS</span></div>
-    <li class="spacer" *ngFor="let customer of texasCustomers">
-      <span class="spanbox">{{customer.firstName}}</span>
-      <span class="spanbox">{{customer.lastName}}</span>
-      <span class="spanbox">{{customer.emailAddress}}</span>
-      <span class="spanbox">{{customer.homeAddress}}</span>
-      <span class="spanbox">{{customer.city}}</span>
-      <span class="spanbox">{{customer.state}}</span>
-      <span class="spanbox">{{customer.zipCode}}</span>
+<div>
+  <div class=" customerInput">
+    <div class="row inputSpan">
+      <div class="col-xl-6 col-lg-12">
+          <div class="row">
+            <div class="col-lg-3 col-md-6">
+              <button class="col-10 offset-1 clear" (click)="clear()">CLEAR</button>
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <input class="col-10 offset-1 spanbox"  [(ngModel)] = myCustomer.firstName (input)="setPage(0)" placeholder="First Name">
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <input class="col-10 offset-1 spanbox" [(ngModel)] = myCustomer.lastName (input)="setPage(0)"placeholder="Last Name">
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <input class="col-10 offset-1 spanbox" [(ngModel)] = myCustomer.emailAddress (input)="setPage(0)"placeholder="Email Address">
+            </div>
+          </div>
+      </div>
+        <div class="col-xl-6 col-lg-12">
+          <div class="row">
+            <div class="col-lg-3 col-md-6">
+              <input class="col-10 offset-1 spanbox" [(ngModel)] = myCustomer.homeAddress (input)="setPage(0)"placeholder="Home Address">
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <input class="col-10 offset-1 spanbox" [(ngModel)] = myCustomer.city (input)="setPage(0)"placeholder="City">
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <input class="col-10 offset-1 spanbox" [(ngModel)] = myCustomer.state (input)="setPage(0)"placeholder="State">
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <input class="col-10 offset-1 spanbox" [(ngModel)] = myCustomer.zipCode (input)="setPage(0)"placeholder="Zip Code">
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-4 offset-lg-4 centerField">
+      <img class="col-lg-6 offset-lg-3" src="../assets/images/CustLogo.png">
+    </div>
+  </div>
+  <ul class="customerList">
+      <li class="row customerSort">
+        <div class="d-md-none col-lg">
+          <div class="col-8 offset-2">SORT</div>
+        </div>
+        <div class="col-xl-6 col-lg-12">
+            <div class="row">
+              <div class="col-lg-3  col-md-6">
+                <div class="col-8 offset-2 sortFieldBox" (click)="setSort('id')">ID</div>
+              </div>
+              <div class="col-lg-3  col-md-6">
+                <div class="col-8 offset-2 sortFieldBox" (click)="setSort('firstName')">First Name</div>
+              </div>
+              <div class="col-lg-3  col-md-6">
+                <div class="col-8 offset-2 sortFieldBox" (click)="setSort('lastName')">Last Name</div>
+              </div>
+              <div class="col-lg-3  col-md-6">
+                <div class="col-8 offset-2 sortFieldBox" (click)="setSort('emailAddress')">Email Address</div>
+              </div>
+            </div>
+        </div>
+        <div class="col-xl-6 col-lg-12">
+            <div class="row">
+              <div class="col-lg-3  col-md-6">
+                <div class="col-8 offset-2 sortFieldBox" (click)="setSort('homeAddress')">Home Address</div>
+              </div>
+              <div class="col-lg-3  col-md-6">
+                <div class="col-8 offset-2 sortFieldBox" (click)="setSort('city')">City</div>
+              </div>
+              <div class="col-lg-3  col-md-6">
+                <div class="col-8 offset-2 sortFieldBox" (click)="setSort('state')">State</div>
+              </div>
+              <div class="col-lg-3  col-md-6">
+                <div class="col-8 offset-2 sortFieldBox" (click)="setSort('zipCode')">Zip Code</div>
+              </div>
+            </div>
+        </div>
+      </li>
+    <li class="row customerBox" *ngFor="let customer of allCustomers" (click)="setCustomer(customer)">
+      <div class="d-md-none col-lg">
+        <div class="col-8 offset-2 customerLabel">CUSTOMER ID: {{customer.id}}</div>
+      </div>
+      <div class="col-xl-6 col-lg-12">
+        <div class="row">
+          <div class="col-lg-3 col-md-6">
+            <div class="col-8 offset-2 fieldBox">{{customer.id}}</div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="col-8 offset-2 fieldBox">{{customer.firstName}}</div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="col-8 offset-2 fieldBox">{{customer.lastName}}</div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="col-8 offset-2 fieldBox">{{customer.emailAddress}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-6 col-lg-12">
+        <div class="row">
+          <div class="col-lg-3 col-md-6">
+            <div class="col-8 offset-2 fieldBox">{{customer.homeAddress}}</div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="col-8 offset-2 fieldBox">{{customer.city}}</div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="col-8 offset-2 fieldBox">{{customer.state}}</div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="col-8 offset-2 fieldBox">{{customer.zipCode}}</div>
+          </div>
+        </div>
+      </div>
+    </li>
+    <p class="col-4 offset-4 centered" *ngIf="(allCustomers.length===0)">NO MATCHING CUSTOMERS</p>
+  </ul>
+  <ul class="row pageList">
+    <li *ngFor="let item of pageArray; let i = index">
+      <div [ngClass]="{'page': i!= page, 'noPage': i == page}" class = "col" (click)="setPage(i)">{{i+1}}</div>
     </li>
   </ul>
-  <hr>
-  <ul class="noBull">
-    <span><h2>OTHER CUSTOMERS</h2></span>
-    <li class="spacer" *ngFor="let customer of otherCustomers">
-      <span class="spanbox">{{customer.firstName}}</span>
-      <span class="spanbox">{{customer.lastName}}</span>
-      <span class="spanbox">{{customer.emailAddress}}</span>
-      <span class="spanbox">{{customer.homeAddress}}</span>
-      <span class="spanbox">{{customer.city}}</span>
-      <span class="spanbox">{{customer.state}}</span>
-      <span class="spanbox">{{customer.zipCode}}</span>
-    </li>
-  </ul>
-    <hr>
 </div>
