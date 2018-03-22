@@ -14,7 +14,7 @@ import {AngularFireDatabaseModule} from 'angularfire2/database';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import {AuthService} from './auth.service';
 import { MyListComponent } from './my-list/my-list.component';
-import { GridPieceComponent } from './grid-piece/grid-piece.component';
+import { GridComponent } from './grid/grid.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ import { GridPieceComponent } from './grid-piece/grid-piece.component';
     EmailComponent,
     AddCustomerComponent,
     MyListComponent,
-    GridPieceComponent,
+    GridComponent,
   ],
   imports: [
     BrowserModule,

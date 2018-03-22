@@ -1,0 +1,13 @@
+<div>
+  <div *ngIf="gameOver===false" class="row grid">
+    <div *ngFor="let row of pieces" class="col-12 gridRow">
+      <div *ngFor="let piece of row" (click)="startGame(piece)" class="col-1 gridSquare" [ngClass]="{'head': piece==head, 'food': piece==food, 'train': inTrain(piece)}">
+        <div class="oneSquare"></div>
+      </div>
+    </div>
+    <div class="score">SCORE: {{bodyLength}}</div>
+  </div>
+  <div *ngIf="gameOver===true" class="row">
+    <div class="col-12 lose over">YOU LOSE</div>
+  </div>
+  </div>

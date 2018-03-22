@@ -1,0 +1,50 @@
+.oneSquare{
+  display: inline-block;
+  background-color: white;
+  width: 100%;
+  align-content: center;
+  margin: auto;
+}
+.gridRow{
+  display: flex;
+  margin: auto;
+  align-content: center;
+}
+.gridSquare{
+  background-color: white;
+  padding: 1%;
+  display: inline-block;
+  border: 1px solid black;
+  margin: 2px;
+  align-content: center;
+}
+.grid{
+  align-content: center;
+}
+.head{
+  background-color: red;
+}
+.food{
+  background-color: yellow;
+}
+.train{
+  background-color: orangered;
+}
+.score{
+  text-align: center;
+  font-weight: bolder;
+  color: yellow;
+}
+.over{
+  background-image: url("../../assets/images/dsnake.png");
+  background-size: 100%;
+  padding-bottom: 100%;
+}
+.lose{
+  text-align: center;
+  margin:auto;
+  align-content: center;
+  color: yellow;
+  font-size: 30px;
+  font-weight: bold;
+}

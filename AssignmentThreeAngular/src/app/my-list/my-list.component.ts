@@ -27,13 +27,14 @@ export class MyListComponent implements OnInit {
   showSnake(): void {
     if (this.snakeShow) {
       this.snakeShow = false;
+      this.playingSnake = false;
     } else {
       this.snakeShow = true;
     }
   }
   playSnake(): void {
     this.playingSnake = true;
-    for (let i = 0; i < 24; ++i ) {
+    for (let i = 0; i < 12; ++i ) {
       this.gridWidth[i] = i;
       this.gridHeight[i] = i;
     }
