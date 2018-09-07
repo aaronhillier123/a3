@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import {Title} from '@angular/platform-browser';
 import {AuthService} from './auth.service';
 import * as firebase from 'firebase/app';
-import {Observable} from 'rxjs/Observable';
 import {Subscription} from 'rxjs/Subscription';
 
 @Component({

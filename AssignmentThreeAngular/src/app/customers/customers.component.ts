@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Customer} from '../customer';
 import {CustomerService} from '../customer.service';
 import {EmailService} from '../email.service';
-import {Message} from '../message';
-import {forEach} from '@angular/router/src/utils/collection';
 import {Title} from '@angular/platform-browser';
 import {Subscription} from 'rxjs/Subscription';
 
@@ -41,7 +39,7 @@ export class CustomersComponent implements OnInit {
     this.customerService.getAllCustomers(this.myCustomer, this.order, this.sortField, this.page)
       .subscribe(customers => {
         this.allCustomers = customers.content;
-        this.pageArray = new Array<Number>(customers.totalPages)
+        this.pageArray = new Array<Number>(customers.totalPages);
         if (this.page >= this.pageArray.length) {
           this.page = 0;
         }

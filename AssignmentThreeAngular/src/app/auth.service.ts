@@ -3,7 +3,6 @@ import {AngularFireAuth} from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import {Observable} from 'rxjs/Observable';
 import {AngularFireDatabase, AngularFireList, AngularFireObject} from 'angularfire2/database';
-import {AngularFirestoreCollection} from 'angularfire2/firestore';
 import 'rxjs/add/operator/map';
 import {CustomerService} from './customer.service';
 import {Customer} from './customer';

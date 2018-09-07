@@ -1,14 +1,9 @@
-import { Injectable } from '@angular/core';
-import { Customer} from './customer';
-import { Observable} from 'rxjs/Observable';
-import {of} from 'rxjs/observable/of';
+import {Injectable} from '@angular/core';
+import {Customer} from './customer';
+import {Observable} from 'rxjs/Observable';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import 'rxjs/add/operator/map';
-import * as url from 'url';
 import {Subject} from 'rxjs/Subject';
-import {Subscriber} from 'rxjs/Subscriber';
-import {FormControl, Validators} from '@angular/forms';
-import {isEmpty} from 'rxjs/operators';
 import {isNull, isNullOrUndefined} from 'util';
 
 
@@ -24,6 +19,7 @@ export class CustomerService {
   isValidSubject: Subject<number[]> = new Subject<number[]>();
   allCustomers: Customer[] = new Array<Customer>();
   listedCustomers: Customer[] = new Array<Customer>();
+
   /**
    * Gets page of customers from backend that match the criteria
    * @param {Customer} myCustomer criteria that we are trying to get from the server
@@ -38,27 +34,33 @@ export class CustomerService {
       .set('sortField', sortField);
     return this.http.get<any>(this.baseUrl + 'customers/all', {params: myParams});
   }
+
   setAllCustomer(allCustomers: Customer[]): void {
     this.allCustomers = allCustomers.slice(0);
   }
+
   getListCustomers(ids: Array<number>): Observable<any> {
-      const myParams = new HttpParams()
-        .set('ids', JSON.stringify(ids));
-      return this.http.get<any>(this.baseUrl + 'customers/one', {params: myParams});
+    const myParams = new HttpParams()
+      .set('ids', JSON.stringify(ids));
+    return this.http.get<any>(this.baseUrl + 'customers/one', {params: myParams});
   }
+
   addNewCustomer(myCustomer: Customer): Observable<any> {
     this.Current = myCustomer;
     this.Current.id = null;
     return this.http.post<any>(this.baseUrl + 'customers/add', this.Current);
   }
+
   saveCustomer(myCustomer: Customer): Observable<any> {
     this.Current = myCustomer;
     return this.http.post<any>(this.baseUrl + 'customers/edit', this.Current);
   }
+
   removeCustomer(myCustomer: Customer): Observable<any> {
     this.Current = myCustomer;
     return this.http.post<any>(this.baseUrl + 'customers/remove', this.Current);
   }
+
   /**
    * set the infocus customer and the isValid state
    * @param {Customer} myCustomer customer to set as the in focus customer
@@ -71,6 +73,7 @@ export class CustomerService {
     this.isWithin(this.Current);
     this.isValidSubject.next(this.isValid);
   }
+
   // 0 invalid 1 valid 2 contained
   isWithin(myCustomer: Customer): void {
     for (const c of this.allCustomers) {
@@ -79,6 +82,7 @@ export class CustomerService {
       }
     }
   }
+
   isEquivalent(a, b): boolean {
     const aProps = Object.getOwnPropertyNames(a);
     const bProps = Object.getOwnPropertyNames(b);
@@ -93,6 +97,7 @@ export class CustomerService {
     }
     return true;
   }
+
   /**
    * Look to see if current customer has all fields filled out
    * @param {Customer} myCustomer current customer
@@ -107,8 +112,9 @@ export class CustomerService {
     this.isValid[5] = isNullOrUndefined(this.Current.city) ? 0 : 1;
     this.isValid[6] = isNullOrUndefined(this.Current.zipCode) ? 0 : 1;
   }
+
   checkState(): void {
-    const states = [ 'AKAlaska',
+    const states = ['AKAlaska',
       'AL',
       'AR',
       'AS',
@@ -238,6 +244,7 @@ export class CustomerService {
     this.CurrentSubject.next(this.Current);
     this.refreshSubject.next(this.Current);
   }
+
   constructor(private http: HttpClient) {
   }
 }

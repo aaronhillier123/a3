@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Customer} from '../customer';
-import {AngularFireDatabase, AngularFireList, AngularFireObject} from 'angularfire2/database';
 import {AuthService} from '../auth.service';
 import {Subscription} from 'rxjs/Subscription';
 

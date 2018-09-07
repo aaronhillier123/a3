@@ -1,6 +1,5 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import { Piece } from '../piece';
-import {last} from 'rxjs/operator/last';
 export enum KEY_CODE {
   DOWN_ARROW = 40,
   RIGHT_ARROW = 39,

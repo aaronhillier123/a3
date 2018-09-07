@@ -22,7 +22,7 @@
       <div class="row">
         <div class="seperate col-xl-4 col-lg-8 offset-1">EMAIL ADDRESS:</div>
           <input name="name2" placeholder="Email Address" name="email" class="seperate col-xl-5 customerInput" [(ngModel)]="currentCustomer.emailAddress" pattern="^\S+@\S+\.\S+$"  #email="ngModel" (input)="setCriteria(currentCustomer)">
-        <div *ngIf="(email.invalid)"class="col-lg-2">INVALID</div>
+        <div *ngIf="(email.invalid)"class="col-lg-2">X</div>
       </div>
       <div class="row">
         <div class="seperate col-xl-4 col-lg-8 offset-1">HOME ADDRESS:</div>
@@ -37,12 +37,12 @@
       <div class="row">
         <div class="seperate col-xl-4 col-lg-8 offset-1">STATE:</div>
         <input name="name5" placeholder="State" class="seperate col-xl-5 customerInput" [(ngModel)] = currentCustomer.state #state="ngModel" (input)="setCriteria(currentCustomer)">
-        <div *ngIf="validArray[4]==0" class="col-lg-2">INVALID</div>
+        <div *ngIf="validArray[4]==0" class="col-lg-2">X</div>
       </div>
       <div class="row">
         <div class="seperate col-xl-4 col-lg-8 offset-1">ZIP CODE:</div>
         <input name="name6" placeholder="Zip Code" class="seperate col-xl-5 customerInput" [(ngModel)] = currentCustomer.zipCode pattern="^\d{5}(?:[-\s]\d{4})?$" #zipcode="ngModel" (input)="setCriteria(currentCustomer)">
-        <div *ngIf="(zipcode.invalid)" class="col-lg-2">INVALID</div>
+        <div *ngIf="(zipcode.invalid)" class="col-lg-2">X</div>
       </div>
       <div class="row">
         <button *ngIf="(valid==2 && !editingCustomer)"class="seperate col-lg-10 offset-lg-1 customerButton" (click)="editCustomer()" >EDIT CUSTOMER</button>
